@@ -1,17 +1,17 @@
 package com.example.demo.repositories;
 
 import com.example.demo.models.ConsultaDTO;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
-public class ConsultaRepository {
+public class ConsultaRepository{
     @PersistenceContext
     private EntityManager entityManager; // Permite ejecutar consultas SQL nativas en la base de datos.
+
 
     public List<ConsultaDTO> realizarConsulta() {
         String sql = "SELECT " +
@@ -26,9 +26,10 @@ public class ConsultaRepository {
                 "LEFT JOIN ciudad AS C ON P.id_pais = C.id_pais " +
                 "LEFT JOIN sede_jjoo AS SJ ON C.id_ciudad = SJ.sede " +
                 "LEFT JOIN tipo_jjoo AS TJ ON SJ.id_tipo_jjoo = TJ.id_tipo_jjoo " +
-                "GROUP BY P.id_pais, C.id_ciudad";
+                "GROUP BY P.id_pais, C.id_ciudad, TJ.descripcion_tipo";
 
-        Query query = entityManager.createNativeQuery(sql, "ResultadoConsultaMapping");
+        Query query;
+        query = entityManager.createNativeQuery(sql, "ConsultaDTO");
         return query.getResultList();
     }
 }
