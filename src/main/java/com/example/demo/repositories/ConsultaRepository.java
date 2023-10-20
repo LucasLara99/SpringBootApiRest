@@ -28,7 +28,8 @@ public class ConsultaRepository {
                 "LEFT JOIN tipo_jjoo AS TJ ON SJ.id_tipo_jjoo = TJ.id_tipo_jjoo " +
                 "GROUP BY P.id_pais, C.id_ciudad";
 
-        Query query = entityManager.createNativeQuery(sql, "ResultadoConsultaMapping");
+        Query query;
+        query = entityManager.createNativeQuery(sql, "ConsultaDTO");
         return query.getResultList();
     }
 }
