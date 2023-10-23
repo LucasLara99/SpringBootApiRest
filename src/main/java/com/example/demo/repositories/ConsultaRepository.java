@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Repository
-public class ConsultaRepository{
+public class ConsultaRepository {
     @PersistenceContext
     private EntityManager entityManager; // Permite ejecutar consultas SQL nativas en la base de datos.
 
