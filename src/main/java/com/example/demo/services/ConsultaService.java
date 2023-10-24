@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.entity.ConsultaEntity;
+import com.example.demo.entities.Consulta;
 import com.example.demo.repositories.ConsultaRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class ConsultaService {
         this.consultaRepository = consultaRepository;
     }
 
-    public List<ConsultaEntity> realizarConsulta() {
+    public List<Consulta> realizarConsulta() {
         return consultaRepository.realizarConsulta();
     }
 }

@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ConsultaEntity;
+import com.example.demo.entities.Consulta;
 import com.example.demo.services.ConsultaService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class ConsultaController {
     }
 
     @GetMapping
-    public List<ConsultaEntity> getRealizarConsulta() {
+    public List<Consulta> getRealizarConsulta() {
         return consultaService.realizarConsulta();
     }
 }

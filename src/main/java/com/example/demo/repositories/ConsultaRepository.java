@@ -1,6 +1,6 @@
 package com.example.demo.repositories;
 
-import com.example.demo.entity.ConsultaEntity;
+import com.example.demo.entities.Consulta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 @Repository
-public interface ConsultaRepository extends JpaRepository<ConsultaEntity, Long> {
+public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     @Query(value = "SELECT " +
             "P.id_pais AS id_pais, " +
             "P.nombre_pais AS nombre_pais, " +
@@ -22,5 +22,5 @@ public interface ConsultaRepository extends JpaRepository<ConsultaEntity, Long> 
             "LEFT JOIN sede_jjoo AS SJ ON C.id_ciudad = SJ.sede " +
             "LEFT JOIN tipo_jjoo AS TJ ON SJ.id_tipo_jjoo = TJ.id_tipo_jjoo " +
             "GROUP BY P.id_pais, C.id_ciudad, TJ.descripcion_tipo", nativeQuery = true)
-    List<ConsultaEntity> realizarConsulta();
+    List<Consulta> realizarConsulta();
 }
