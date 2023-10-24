@@ -1,25 +1,19 @@
-package com.example.demo.models;
+package com.example.demo.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-public class ConsultaDTO {
-    @Setter
+@Setter
+public class ConsultaEntity {
+    @Id
     private Long id_pais;
-    @Setter
     private String nombre_pais;
-    @Setter
     private Long id_ciudad;
-    @Setter
     private String nombre_ciudad;
-    @Setter
     private Integer valor;
-    @Setter
     private String descripcion_tipo_jjoo;
-    @Setter
     private Long numero_veces_sede;
 }
