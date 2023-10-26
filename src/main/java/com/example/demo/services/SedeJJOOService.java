@@ -17,6 +17,7 @@ public class SedeJJOOService {
 
     // CRUD de SedeJJOO
     // CREATE
+
     @Transactional // Indica que este método es transaccional.
     public SedeJJOO crearSedeJJOO(SedeJJOO sedeJJOO) {
         if (sedeJJOO.getAño() <= 0 || sedeJJOO.getTipoJJOO() == null || sedeJJOO.getSede() == null) {
@@ -26,20 +27,28 @@ public class SedeJJOOService {
     }
 
     // READ
+
     @Transactional(readOnly = true)
     public SedeJJOO obtenerSedeJJOO(Integer id) {
         return sedeJJOORepository.findById(id).orElse(null);
     }
 
     // UPDATE
+
     @Transactional
-    public SedeJJOO actualizarSedeJJOO(Integer id, SedeJJOO sedeJJOO) {
+    public SedeJJOO actualizarSedeJJOO(Integer id, SedeJJOO sedeActualizada) {
         SedeJJOO sedeExistente = sedeJJOORepository.findById(id).orElse(null);
+
         if (sedeExistente != null) {
-            // Actualiza los campos de la sede existente con los nuevos datos.
-            sedeExistente.setAño(sedeJJOO.getAño());
-            sedeExistente.setTipoJJOO(sedeJJOO.getTipoJJOO());
-            sedeExistente.setSede(sedeJJOO.getSede());
+            if (sedeActualizada.getAño() != null) {
+                sedeExistente.setAño(sedeActualizada.getAño());
+            }
+            if (sedeActualizada.getTipoJJOO() != null) {
+                sedeExistente.setTipoJJOO(sedeActualizada.getTipoJJOO());
+            }
+            if (sedeActualizada.getSede() != null) {
+                sedeExistente.setSede(sedeActualizada.getSede());
+            }
             return sedeJJOORepository.save(sedeExistente);
         } else {
             // Maneja el caso en el que la sede no existe.
@@ -48,11 +57,9 @@ public class SedeJJOOService {
     }
 
     // DELETE
+
     @Transactional
     public void borrarSedeJJOO(Integer id) {
-        // Agrega lógica de validación y procesamiento de datos aquí.
         sedeJJOORepository.deleteById(id);
     }
-
-    // Puedes agregar más métodos y lógica según tus necesidades.
 }
