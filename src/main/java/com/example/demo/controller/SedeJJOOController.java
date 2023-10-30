@@ -17,16 +17,16 @@ public class SedeJJOOController {
     }
 
     //Endpoint para crear una sede de unos JJOO.
-    @PostMapping
-    public ResponseEntity<SedeJJOO> crearSedeJJOO(@RequestBody SedeJJOO sedeJJOO) {
-        SedeJJOO nuevaSede = sedeJJOOService.crearSedeJJOO(sedeJJOO);
-        return ResponseEntity.ok(nuevaSede);
-    }
+//    @PostMapping
+//    public ResponseEntity<SedeJJOO> crearSedeJJOO(@RequestBody SedeJJOO sedeJJOO) {
+//        SedeJJOO nuevaSede = sedeJJOOService.crearSedeJJOO(sedeJJOO);
+//        return ResponseEntity.ok(nuevaSede);
+//    }
 
     // Endpoint para obtener una sede de JJOO por su ID
-    @GetMapping("/{id}")
-    public ResponseEntity<SedeJJOO> obtenerSedeJJOO(@PathVariable Integer id) {
-        SedeJJOO sede = sedeJJOOService.obtenerSedeJJOO(id);
+    @GetMapping("/{año}/{id_tipo_jjoo}")
+    public ResponseEntity<SedeJJOO> obtenerSedeJJOO(@PathVariable Integer año, @PathVariable Integer id_tipo_jjoo) {
+        SedeJJOO sede = sedeJJOOService.obtenerSedeJJOO(año, id_tipo_jjoo);
         if (sede != null) {
             return ResponseEntity.ok(sede);
         } else {
@@ -35,20 +35,20 @@ public class SedeJJOOController {
     }
 
     // Endpoint para actualizar una sede de JJOO por su ID
-    @PutMapping("/{id}")
-    public ResponseEntity<SedeJJOO> actualizarSedeJJOO(@PathVariable Integer id, @RequestBody SedeJJOO sedeActualizada) {
-        SedeJJOO sede = sedeJJOOService.actualizarSedeJJOO(id, sedeActualizada);
-        if (sede != null) {
-            return ResponseEntity.ok(sede);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<SedeJJOO> actualizarSedeJJOO(@PathVariable Integer id, @RequestBody SedeJJOO sedeActualizada) {
+//        SedeJJOO sede = sedeJJOOService.actualizarSedeJJOO(id, sedeActualizada);
+//        if (sede != null) {
+//            return ResponseEntity.ok(sede);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     // Endpoint para eliminar una sede de JJOO por su ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarSedeJJOO(@PathVariable Integer id) {
-        sedeJJOOService.borrarSedeJJOO(id);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<?> borrarSedeJJOO(@PathVariable Integer id) {
+//        sedeJJOOService.borrarSedeJJOO(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

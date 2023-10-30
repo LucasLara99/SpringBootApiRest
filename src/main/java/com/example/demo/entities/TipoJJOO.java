@@ -11,7 +11,7 @@ import lombok.Setter;
 public class TipoJJOO {
     @Id
     @Column(name = "id_tipo_jjoo")
-    private Integer idTipoJJOO;
+    private Integer id_tipo_jjoo;
 
     @Column(name = "descripcion_tipo")
     private String descripcionTipo;
