@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
-@Mapper()
+@Mapper(componentModel = "spring")
 public interface SedeJJOOMapper {
     SedeJJOOMapper INSTANCE = Mappers.getMapper(SedeJJOOMapper.class);
 
