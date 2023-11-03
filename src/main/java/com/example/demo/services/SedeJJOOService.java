@@ -15,7 +15,8 @@ public class SedeJJOOService {
     private final SedeJJOOMapper sedeJJOOMapper;
 
     @Autowired
-    public SedeJJOOService(SedeJJOORepository sedeJJOORepository, SedeJJOOMapper sedeJJOOMapper) {
+    public SedeJJOOService(SedeJJOORepository sedeJJOORepository,
+                           SedeJJOOMapper sedeJJOOMapper) {
         this.sedeJJOORepository = sedeJJOORepository;
         this.sedeJJOOMapper = sedeJJOOMapper;
     }
@@ -44,27 +45,21 @@ public class SedeJJOOService {
     }
 
     // UPDATE
+    @Transactional
+    public SedeJJOO actualizarSedeJJOO(Integer año, Integer idTipoJJOO, SedeJJOO sedeRequest) {
+        SedeJJOO sedeExistente = sedeJJOORepository.findById(new SedeJJOOKey(año, idTipoJJOO)).orElse(null);
 
-//    @Transactional
-//    public SedeJJOO actualizarSedeJJOO(Integer id, SedeJJOO sedeActualizada) {
-//        SedeJJOO sedeExistente = sedeJJOORepository.findById(id).orElse(null);
-//
-//        if (sedeExistente != null) {
-//            if (sedeActualizada.getAño() != null) {
-//                sedeExistente.setAño(sedeActualizada.getAño());
-//            }
-//            if (sedeActualizada.getId_tipo_jjoo() != null) {
-//                sedeExistente.getId_tipo_jjoo(sedeActualizada.getTipoJJOO());
-//            }
-//            if (sedeActualizada.getSede() != null) {
-//                sedeExistente.setSede(sedeActualizada.getSede());
-//            }
-//            return sedeJJOORepository.save(sedeExistente);
-//        } else {
-//            // Maneja el caso en el que la sede no existe.
-//            return null;
-//        }
-//    }
+        if (sedeExistente != null) {
+            //Actualizamos los datos que vengan en la request
+            if (sedeRequest.getSede() != null) {
+                sedeExistente.setSede(sedeRequest.getSede());
+            }
+            return sedeJJOORepository.save(sedeExistente);
+        } else {
+            return null;
+        }
+    }
+
 
     // DELETE
 //

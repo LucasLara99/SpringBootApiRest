@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dtos.SedeJJOODto;
+import com.example.demo.entities.SedeJJOO;
 import com.example.demo.services.SedeJJOOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,15 +36,21 @@ public class SedeJJOOController {
     }
 
     // Endpoint para actualizar una sede de JJOO por su ID
-//    @PutMapping("/{id}")
-//    public ResponseEntity<SedeJJOO> actualizarSedeJJOO(@PathVariable Integer id, @RequestBody SedeJJOO sedeActualizada) {
-//        SedeJJOO sede = sedeJJOOService.actualizarSedeJJOO(id, sedeActualizada);
-//        if (sede != null) {
-//            return ResponseEntity.ok(sede);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PutMapping("/{año}/{idTipoJJOO}")
+    public ResponseEntity<SedeJJOO> actualizarSedeJJOO(
+            @PathVariable Integer año,
+            @PathVariable Integer idTipoJJOO,
+            @RequestBody SedeJJOO sedeRequest) {
+
+        SedeJJOO sedeActualizada = sedeJJOOService.actualizarSedeJJOO(año, idTipoJJOO, sedeRequest);
+
+        if (sedeActualizada != null) {
+            return ResponseEntity.ok(sedeActualizada);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     // Endpoint para eliminar una sede de JJOO por su ID
 //    @DeleteMapping("/{id}")
