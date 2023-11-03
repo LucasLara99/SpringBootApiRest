@@ -2,11 +2,13 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "ciudad", schema = "juegosolimpicos")
 public class Ciudad {
     @Id
@@ -17,7 +19,8 @@ public class Ciudad {
     private String nombreCiudad;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais") // Esta columna se refiere a la clave foránea en la tabla ciudad
+    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
+    // Esta columna se refiere a la clave foránea en la tabla ciudad
     private Pais pais;
 
     @Column(name = "valor_ciudad")

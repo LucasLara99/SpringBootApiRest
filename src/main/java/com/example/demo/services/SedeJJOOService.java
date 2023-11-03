@@ -1,7 +1,9 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.SedeJJOODto;
 import com.example.demo.entities.SedeJJOO;
 import com.example.demo.entities.SedeJJOOKey;
+import com.example.demo.mappers.SedeJJOOMapper;
 import com.example.demo.repositories.SedeJJOORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SedeJJOOService {
     private final SedeJJOORepository sedeJJOORepository;
+    private final SedeJJOOMapper sedeJJOOMapper;
 
-    @Autowired // Inyección de dependencias.
-    public SedeJJOOService(SedeJJOORepository sedeJJOORepository) {
+    @Autowired
+    public SedeJJOOService(SedeJJOORepository sedeJJOORepository, SedeJJOOMapper sedeJJOOMapper) {
         this.sedeJJOORepository = sedeJJOORepository;
+        this.sedeJJOOMapper = sedeJJOOMapper;
     }
 
     // CRUD de SedeJJOO
@@ -30,8 +34,13 @@ public class SedeJJOOService {
     // READ
 
     @Transactional(readOnly = true)
-    public SedeJJOO obtenerSedeJJOO(Integer año, Integer id_tipo_jjoo) {
-        return sedeJJOORepository.findById(new SedeJJOOKey(año, id_tipo_jjoo)).orElse(null);
+    public SedeJJOODto obtenerSedeJJOO(Integer año, Integer id_tipo_jjoo) {
+        SedeJJOO sedeJJOO = sedeJJOORepository.findById(new SedeJJOOKey(año, id_tipo_jjoo)).orElse(null);
+        if (sedeJJOO != null) {
+            return sedeJJOOMapper.ModelToDto(sedeJJOO);
+        } else {
+            return null;
+        }
     }
 
     // UPDATE

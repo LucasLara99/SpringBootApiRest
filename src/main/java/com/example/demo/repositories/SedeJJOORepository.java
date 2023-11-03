@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SedeJJOORepository extends JpaRepository<SedeJJOO, SedeJJOOKey> {
     //Aquí se accede a las operaciones CRUD estándar proporcionadas por JpaRepository (save, findById, etc.)
-
-    //Definimos un método para buscar por ambas claves primarias, año y tipoJJOO.
 }
