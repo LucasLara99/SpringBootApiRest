@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dtos.SedeJJOODto;
+import com.example.demo.entities.Ciudad;
 import com.example.demo.entities.SedeJJOO;
 import com.example.demo.entities.SedeJJOOKey;
 import com.example.demo.mappers.SedeJJOOMapper;
@@ -14,26 +15,34 @@ public class SedeJJOOService {
     private final SedeJJOORepository sedeJJOORepository;
     private final SedeJJOOMapper sedeJJOOMapper;
 
+
     @Autowired
-    public SedeJJOOService(SedeJJOORepository sedeJJOORepository,
-                           SedeJJOOMapper sedeJJOOMapper) {
+    public SedeJJOOService(SedeJJOORepository sedeJJOORepository, SedeJJOOMapper sedeJJOOMapper) {
         this.sedeJJOORepository = sedeJJOORepository;
         this.sedeJJOOMapper = sedeJJOOMapper;
     }
 
     // CRUD de SedeJJOO
     // CREATE
+    @Transactional
+    public SedeJJOO crearSedeJJOO(SedeJJOO sedeJJOO) {
+        SedeJJOOKey id = sedeJJOO.getId();
+        if (id == null) {
+            throw new IllegalArgumentException("La clave primaria (ID) no puede ser nula.");
+        }
 
-//    @Transactional // Indica que este método es transaccional.
-//    public SedeJJOO crearSedeJJOO(SedeJJOO sedeJJOO) {
-//        if (sedeJJOO.getAño() <= 0 || sedeJJOO.getId_tipo_jjoo() == null || sedeJJOO.getSede() == null) {
-//            throw new IllegalArgumentException("Los datos de la sede no son válidos.");
-//        }
-//        return sedeJJOORepository.save(sedeJJOO);
-//    }
+        Integer ciudadId = sedeJJOO.getSede().getIdCiudad();
+        if (ciudadId != null) {
+            Ciudad ciudad = new Ciudad();
+            ciudad.setIdCiudad(ciudadId);
+            sedeJJOO.setSede(ciudad);
+        }
+
+        return sedeJJOORepository.save(sedeJJOO);
+    }
+
 
     // READ
-
     @Transactional(readOnly = true)
     public SedeJJOODto obtenerSedeJJOO(Integer año, Integer id_tipo_jjoo) {
         SedeJJOO sedeJJOO = sedeJJOORepository.findById(new SedeJJOOKey(año, id_tipo_jjoo)).orElse(null);
@@ -43,6 +52,7 @@ public class SedeJJOOService {
             return null;
         }
     }
+
 
     // UPDATE
     @Transactional
@@ -62,9 +72,14 @@ public class SedeJJOOService {
 
 
     // DELETE
-//
-//    @Transactional
-//    public void borrarSedeJJOO(Integer id) {
-//        sedeJJOORepository.deleteById(id);
-//    }
+    @Transactional
+    public boolean eliminarSedeJJOO(Integer año, Integer idTipoJjoo) {
+        SedeJJOO sedeExistente = sedeJJOORepository.findById(new SedeJJOOKey(año, idTipoJjoo)).orElse(null);
+        if (sedeExistente != null) {
+            sedeJJOORepository.delete(sedeExistente);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
