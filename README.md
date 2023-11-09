@@ -110,4 +110,4 @@ La aplicación sigue una estructura de proyecto típica de Spring Boot y se orga
 - **`com.example.demo.dtos`**: Contiene las clases DTO (Data Transfer Object) utilizadas para transferir datos entre la capa de vista y la capa de servicio.
 - **`com.example.demo.mappers`**: Contiene los mappers utilizados para transformar entre entidades y DTOs.
 
-La aplicación utiliza MySQL como base de datos y sigue un enfoque basado en controladores para gestionar las solicitudes y servicios para la lógica empresarial.
+La aplicación utiliza MySQL como base de datos y sigue una arquitectura MVC (Model-View-Controller) con Spring Boot. Los controladores gestionan las solicitudes web, los servicios contienen la lógica empresarial y Spring Data JPA facilita el acceso a la base de datos. JUnit se utiliza para pruebas unitarias y Maven es la herramienta de gestión de proyectos. 
