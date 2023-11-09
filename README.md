@@ -75,3 +75,39 @@ Se requiere la utilización de:
 - Maven
 - Spring
 - Spring Boot como arquetipo de la aplicación
+
+
+# Guía de Despliegue y Estructura de la Aplicación
+
+## Desplegar la Aplicación
+
+Para desplegar esta aplicación, sigue los siguientes pasos:
+
+1. **Requisitos Previos**:
+   - Asegúrate de tener Java JDK 21 o superior instalado en tu sistema.
+   - Asegúrate de tener una instancia de MySQL en ejecución. Puedes utilizar una base de datos local o configurar las propiedades de conexión en el archivo `application.properties`.
+
+2. **Clonar el Repositorio**:
+   - Clona este repositorio en tu máquina local.
+
+3. **Compilar el Proyecto**:
+   - Abre un terminal en la raíz del proyecto y ejecuta el siguiente comando para compilar la aplicación: `mvn clean install`.
+
+4. **Ejecutar la Aplicación**:
+   - Una vez compilada, ejecuta la aplicación con el siguiente comando: `mvn spring-boot:run`.
+
+5. **Acceder a la Aplicación**:
+   - La aplicación estará disponible en `http://localhost:8080` en tu navegador web.
+
+## Estructura del Código
+
+La aplicación sigue una estructura de proyecto típica de Spring Boot y se organiza en los siguientes paquetes:
+
+- **`com.example.demo.controllers`**: Contiene los controladores de la aplicación que gestionan las solicitudes HTTP y las respuestas.
+- **`com.example.demo.services`**: Contiene la lógica de negocio de la aplicación y los servicios.
+- **`com.example.demo.repositories`**: Contiene las interfaces y clases que gestionan la comunicación con la base de datos.
+- **`com.example.demo.entities`**: Contiene las clases que definen el modelo de datos de la aplicación.
+- **`com.example.demo.dtos`**: Contiene las clases DTO (Data Transfer Object) utilizadas para transferir datos entre la capa de vista y la capa de servicio.
+- **`com.example.demo.mappers`**: Contiene los mappers utilizados para transformar entre entidades y DTOs.
+
+La aplicación utiliza MySQL como base de datos y sigue una arquitectura MVC (Model-View-Controller) con Spring Boot. Los controladores gestionan las solicitudes web, los servicios contienen la lógica empresarial y Spring Data JPA facilita el acceso a la base de datos. JUnit se utiliza para pruebas unitarias y Maven es la herramienta de gestión de proyectos. 
