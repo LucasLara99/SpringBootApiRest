@@ -7,9 +7,17 @@ import com.example.demo.entities.SedeJJOOKey;
 import com.example.demo.mappers.SedeJJOOMapper;
 import com.example.demo.repositories.SedeJJOORepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
+
+/**
+ * Clase SedeJJOOService que contiene los métodos para crear, obtener, actualizar y eliminar una sede de unos JJOO
+ *
+ * @version 09/11/2023
+ */
 @Service
 public class SedeJJOOService {
     private final SedeJJOORepository sedeJJOORepository;
@@ -22,13 +30,18 @@ public class SedeJJOOService {
         this.sedeJJOOMapper = sedeJJOOMapper;
     }
 
-    // CRUD de SedeJJOO
-    // CREATE
+
+    /**
+     * Crea una sede de unos JJOO
+     *
+     * @param sedeJJOO Sede de los JJOO
+     * @return Sede de los JJOO creada
+     */
     @Transactional
     public SedeJJOO crearSedeJJOO(SedeJJOO sedeJJOO) {
         SedeJJOOKey id = sedeJJOO.getId();
         if (id == null) {
-            throw new IllegalArgumentException("La clave primaria (ID) no puede ser nula.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El id de la sede no puede ser nulo");
         }
 
         Integer ciudadId = sedeJJOO.getSede().getIdCiudad();
@@ -42,7 +55,13 @@ public class SedeJJOOService {
     }
 
 
-    // READ
+    /**
+     * Obtiene una sede de unos JJOO
+     *
+     * @param año          Año de los JJOO
+     * @param id_tipo_jjoo Id del tipo de JJOO
+     * @return Sede de los JJOO
+     */
     @Transactional(readOnly = true)
     public SedeJJOODto obtenerSedeJJOO(Integer año, Integer id_tipo_jjoo) {
         SedeJJOO sedeJJOO = sedeJJOORepository.findById(new SedeJJOOKey(año, id_tipo_jjoo)).orElse(null);
@@ -54,7 +73,14 @@ public class SedeJJOOService {
     }
 
 
-    // UPDATE
+    /**
+     * Actualiza una sede de unos JJOO
+     *
+     * @param año         Año de los JJOO
+     * @param idTipoJJOO  Id del tipo de JJOO
+     * @param sedeRequest Sede de los JJOO con los datos actualizados
+     * @return Sede de los JJOO actualizada
+     */
     @Transactional
     public SedeJJOO actualizarSedeJJOO(Integer año, Integer idTipoJJOO, SedeJJOO sedeRequest) {
         SedeJJOO sedeExistente = sedeJJOORepository.findById(new SedeJJOOKey(año, idTipoJJOO)).orElse(null);
@@ -71,7 +97,13 @@ public class SedeJJOOService {
     }
 
 
-    // DELETE
+    /**
+     * Elimina una sede de unos JJOO
+     *
+     * @param año        Año de los JJOO
+     * @param idTipoJjoo Id del tipo de JJOO
+     * @return true si se ha eliminado, false si no se ha encontrado
+     */
     @Transactional
     public boolean eliminarSedeJJOO(Integer año, Integer idTipoJjoo) {
         SedeJJOO sedeExistente = sedeJJOORepository.findById(new SedeJJOOKey(año, idTipoJjoo)).orElse(null);
