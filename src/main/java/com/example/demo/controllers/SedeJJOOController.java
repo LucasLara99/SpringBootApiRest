@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.dtos.CrearSedeJJOODto;
 import com.example.demo.dtos.SedeJJOODto;
 import com.example.demo.entities.SedeJJOO;
 import com.example.demo.services.SedeJJOOService;
@@ -25,19 +26,20 @@ public class SedeJJOOController {
     /**
      * Crea una sede de unos JJOO
      *
-     * @param sedeJJOO Sede de los JJOO
+     * @param crearSedeDto Sede de los JJOO
      * @return Sede de los JJOO creada
      */
     @PostMapping
-    public ResponseEntity<SedeJJOO> crearSedeJJOO(@RequestBody SedeJJOO sedeJJOO) {
-        SedeJJOO nuevaSede = sedeJJOOService.crearSedeJJOO(sedeJJOO);
+    public ResponseEntity<SedeJJOODto> crearSedeJJOO(@RequestBody CrearSedeJJOODto crearSedeDto) {
+        SedeJJOO nuevaSede = sedeJJOOService.crearSedeJJOO(crearSedeDto);
         if (nuevaSede != null) {
+            SedeJJOODto nuevaSedeDto = sedeJJOOService.obtenerSedeJJOO(nuevaSede.getId().getAño(), nuevaSede.getId().getId_tipo_jjoo());
             // Construimos una URI que representa la ubicación del nuevo recurso
             URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                     .path("/{año}/{id_tipo_jjoo}")
                     .buildAndExpand(nuevaSede.getId().getAño(), nuevaSede.getId().getId_tipo_jjoo())
                     .toUri();
-            return ResponseEntity.created(location).body(nuevaSede);
+            return ResponseEntity.created(location).body(nuevaSedeDto);
         } else {
             return ResponseEntity.badRequest().build();
         }

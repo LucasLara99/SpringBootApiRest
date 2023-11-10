@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.dtos.CrearSedeJJOODto;
 import com.example.demo.dtos.SedeJJOODto;
 import com.example.demo.entities.Ciudad;
 import com.example.demo.entities.SedeJJOO;
@@ -7,10 +8,8 @@ import com.example.demo.entities.SedeJJOOKey;
 import com.example.demo.mappers.SedeJJOOMapper;
 import com.example.demo.repositories.SedeJJOORepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 
 /**
@@ -34,16 +33,14 @@ public class SedeJJOOService {
     /**
      * Crea una sede de unos JJOO
      *
-     * @param sedeJJOO Sede de los JJOO
+     * @param crearSedeDto Sede de los JJOO
      * @return Sede de los JJOO creada
      */
     @Transactional
-    public SedeJJOO crearSedeJJOO(SedeJJOO sedeJJOO) {
-        SedeJJOOKey id = sedeJJOO.getId();
-        if (id == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El id de la sede no puede ser nulo");
-        }
-
+    public SedeJJOO crearSedeJJOO(CrearSedeJJOODto crearSedeDto) {
+        SedeJJOO sedeJJOO = sedeJJOOMapper.DtoToModel(crearSedeDto);
+        System.out.println(sedeJJOO.getSede());
+        sedeJJOO.getId().setId_tipo_jjoo(crearSedeDto.getId_tipo_jjoo());
         Integer ciudadId = sedeJJOO.getSede().getIdCiudad();
         if (ciudadId != null) {
             Ciudad ciudad = new Ciudad();

@@ -8,5 +8,6 @@ import lombok.Setter;
 public class SedeJJOODto {
     private Integer año;
     private String description;
+    private Integer idCiudad;
     private String nombreCiudad;
 }
