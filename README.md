@@ -4,6 +4,7 @@
 
 1. [SpringBootApiRest](#SpringBootApiRest)
 2. [Guía de Despliegue y Estructura de la Aplicación](#GuíadeDespliegueyEstructuradelaAplicación)
+3. [React](#React)
 
 ## SpringBootApiRest
 
@@ -86,7 +87,7 @@ Se requiere la utilización de:
 
 ## Guía de Despliegue y Estructura de la Aplicación
 
-## Desplegar la Aplicación
+### Desplegar la Aplicación
 
 Para desplegar esta aplicación, sigue los siguientes pasos:
 
@@ -106,7 +107,7 @@ Para desplegar esta aplicación, sigue los siguientes pasos:
 5. **Acceder a la Aplicación**:
    - La aplicación estará disponible en `http://localhost:8080` en tu navegador web.
 
-## Estructura del Código
+### Estructura del Código
 
 La aplicación sigue una estructura de proyecto típica de Spring Boot y se organiza en los siguientes paquetes:
 
@@ -118,3 +119,6 @@ La aplicación sigue una estructura de proyecto típica de Spring Boot y se orga
 - **`com.example.demo.mappers`**: Contiene los mappers utilizados para transformar entre entidades y DTOs.
 
 La aplicación utiliza MySQL como base de datos y sigue una arquitectura MVC (Model-View-Controller) con Spring Boot. Los controladores gestionan las solicitudes web, los servicios contienen la lógica empresarial y Spring Data JPA facilita el acceso a la base de datos. JUnit se utiliza para pruebas unitarias y Maven es la herramienta de gestión de proyectos. 
+
+
+## React
