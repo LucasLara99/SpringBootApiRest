@@ -6,7 +6,7 @@
 2. [Guía de Despliegue y Estructura de la Aplicación](#GuíadeDespliegueyEstructuradelaAplicación)
 3. [React](#React)
 
-## SpringBootApiRest
+# SpringBootApiRest
 
 El ejercicio se trata de validar conocimientos de Spring, servicios REST y consultas SQL.
 
@@ -84,8 +84,9 @@ Se requiere la utilización de:
 - Spring
 - Spring Boot como arquetipo de la aplicación
 
+---
 
-## Guía de Despliegue y Estructura de la Aplicación
+# Guía de Despliegue y Estructura de la Aplicación
 
 ### Desplegar la Aplicación
 
@@ -120,5 +121,6 @@ La aplicación sigue una estructura de proyecto típica de Spring Boot y se orga
 
 La aplicación utiliza MySQL como base de datos y sigue una arquitectura MVC (Model-View-Controller) con Spring Boot. Los controladores gestionan las solicitudes web, los servicios contienen la lógica empresarial y Spring Data JPA facilita el acceso a la base de datos. JUnit se utiliza para pruebas unitarias y Maven es la herramienta de gestión de proyectos. 
 
+---  
 
-## React
+# React
