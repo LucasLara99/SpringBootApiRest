@@ -73,15 +73,18 @@ public class SedeJJOOController {
      * @return
      */
     @PutMapping("/{año}/{idTipoJJOO}")
-    public ResponseEntity<SedeJJOO> actualizarSedeJJOO(
+    public ResponseEntity<SedeJJOODto> actualizarSedeJJOO(
             @PathVariable Integer año,
             @PathVariable Integer idTipoJJOO,
-            @RequestBody SedeJJOO sedeRequest) {
+            @RequestBody SedeJJOODto sedeRequest) {
 
         SedeJJOO sedeActualizada = sedeJJOOService.actualizarSedeJJOO(año, idTipoJJOO, sedeRequest);
 
         if (sedeActualizada != null) {
-            return ResponseEntity.ok(sedeActualizada);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .buildAndExpand(año, idTipoJJOO)
+                    .toUri();
+            return ResponseEntity.ok().location(location).build();
         } else {
             return ResponseEntity.notFound().build();
         }

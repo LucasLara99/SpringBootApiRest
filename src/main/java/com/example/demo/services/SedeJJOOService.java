@@ -39,7 +39,6 @@ public class SedeJJOOService {
     @Transactional
     public SedeJJOO crearSedeJJOO(CrearSedeJJOODto crearSedeDto) {
         SedeJJOO sedeJJOO = sedeJJOOMapper.DtoToModel(crearSedeDto);
-        System.out.println(sedeJJOO.getSede());
         sedeJJOO.getId().setId_tipo_jjoo(crearSedeDto.getId_tipo_jjoo());
         Integer ciudadId = sedeJJOO.getSede().getIdCiudad();
         if (ciudadId != null) {
@@ -47,7 +46,6 @@ public class SedeJJOOService {
             ciudad.setIdCiudad(ciudadId);
             sedeJJOO.setSede(ciudad);
         }
-
         return sedeJJOORepository.save(sedeJJOO);
     }
 
@@ -75,18 +73,20 @@ public class SedeJJOOService {
      *
      * @param año         Año de los JJOO
      * @param idTipoJJOO  Id del tipo de JJOO
-     * @param sedeRequest Sede de los JJOO con los datos actualizados
+     * @param sedeRequest Sede de los JJOO
      * @return Sede de los JJOO actualizada
      */
     @Transactional
-    public SedeJJOO actualizarSedeJJOO(Integer año, Integer idTipoJJOO, SedeJJOO sedeRequest) {
+    public SedeJJOO actualizarSedeJJOO(Integer año, Integer idTipoJJOO, SedeJJOODto sedeRequest) {
         SedeJJOO sedeExistente = sedeJJOORepository.findById(new SedeJJOOKey(año, idTipoJJOO)).orElse(null);
 
         if (sedeExistente != null) {
-            //Actualizamos los datos que vengan en la request
-            if (sedeRequest.getSede() != null) {
-                sedeExistente.setSede(sedeRequest.getSede());
-            }
+            Ciudad nuevaCiudad = new Ciudad();
+            nuevaCiudad.setIdCiudad(sedeRequest.getIdCiudad());
+            SedeJJOO sedeActualizada = sedeJJOOMapper.UpdateDtoToModel(sedeRequest);
+            sedeActualizada.setSede(nuevaCiudad);
+            sedeExistente.setSede(sedeActualizada.getSede());
+
             return sedeJJOORepository.save(sedeExistente);
         } else {
             return null;

@@ -23,5 +23,9 @@ public interface SedeJJOOMapper {
             @Mapping(source = "idCiudad", target = "sede.idCiudad"),
     })
     SedeJJOO DtoToModel(CrearSedeJJOODto crearSedeJJOODto);
-}
 
+    @Mappings({
+            @Mapping(source = "idCiudad", target = "sede.idCiudad"),
+    })
+    SedeJJOO UpdateDtoToModel(SedeJJOODto sedeJJOODto);
+}
