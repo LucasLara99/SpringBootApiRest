@@ -1,12 +1,19 @@
+# Proyecto Qindel
+
+## Tabla de Contenidos  
+
+1. [SpringBootApiRest](#SpringBootApiRest)
+2. [Guía de Despliegue y Estructura de la Aplicación](#Guia)
+
 # SpringBootApiRest
 
 El ejercicio se trata de validar conocimientos de Spring, servicios REST y consultas SQL.
 
-## Tarea 1
+### Tarea 1
 
 Crear un esquema de BBDD según el modelo adjunto (ejercicio_ddl.sql)
 
-## Tarea 2
+### Tarea 2
 
 Crear una consulta que devuelva los siguientes campos:
 
@@ -39,16 +46,16 @@ FROM pais AS P
 GROUP BY P.id_pais, C.id_ciudad, TJ.descripcion_tipo;
 ```
 
-## Tarea 3
+### Tarea 3
 
 Crear una clase DAO para realizar la consulta y su correspondiente test
 con Junit.
 
-## Tarea 4
+### Tarea 4
 
 Crear una petición REST que muestre la consulta de la tarea 2.
 
-## Tarea 5
+### Tarea 5
 
 Se creará un CRUD para la tabla de SEDE_JJOO, que permita añadir, editar y borrar entradas para esta tabla:
 
@@ -57,7 +64,7 @@ Se creará un CRUD para la tabla de SEDE_JJOO, que permita añadir, editar y bor
 - Se valorará que alguna de estas operaciones contengan campos obligatorios y opcionales en la petición.
 - Adicionalmente, se considerará de forma positiva la gestión de la transaccionalidad en la clase DAO de la tarea 3.
 
-## Tarea 6
+### Tarea 6
 
 Escribir un pequeño README que indique:
 
@@ -66,7 +73,7 @@ Escribir un pequeño README que indique:
 
 Indicar que tecnologías se utilizaría.
 
-## Requisitos
+### Requisitos
 
 Se requiere la utilización de:
 
@@ -76,10 +83,11 @@ Se requiere la utilización de:
 - Spring
 - Spring Boot como arquetipo de la aplicación
 
-
+---
+<a name="Guia"></a>
 # Guía de Despliegue y Estructura de la Aplicación
 
-## Desplegar la Aplicación
+### Desplegar la Aplicación
 
 Para desplegar esta aplicación, sigue los siguientes pasos:
 
@@ -99,7 +107,7 @@ Para desplegar esta aplicación, sigue los siguientes pasos:
 5. **Acceder a la Aplicación**:
    - La aplicación estará disponible en `http://localhost:8080` en tu navegador web.
 
-## Estructura del Código
+### Estructura del Código
 
 La aplicación sigue una estructura de proyecto típica de Spring Boot y se organiza en los siguientes paquetes:
 
