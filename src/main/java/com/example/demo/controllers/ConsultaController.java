@@ -17,6 +17,12 @@ public class ConsultaController {
         this.consultaService = consultaService;
     }
 
+
+    /**
+     * Obtiene una consulta
+     *
+     * @return Consulta
+     */
     @GetMapping
     public List<Consulta> getRealizarConsulta() {
         return consultaService.realizarConsulta();

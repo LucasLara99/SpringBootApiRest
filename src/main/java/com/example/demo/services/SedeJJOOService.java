@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Clase SedeJJOOService que contiene los métodos para crear, obtener, actualizar y eliminar una sede de unos JJOO
@@ -65,6 +67,17 @@ public class SedeJJOOService {
         } else {
             return null;
         }
+    }
+
+
+    /**
+     * Obtiene todas las sedes de los JJOO
+     *
+     * @return Lista de sedes de los JJOO
+     */
+    public List<SedeJJOODto> obtenerTodasLasSedesJJOO() {
+        List<SedeJJOO> sedes = sedeJJOORepository.findAll(); // Esto dependerá de tu repositorio JPA
+        return sedeJJOOMapper.ListaModelToDto(sedes);
     }
 
 

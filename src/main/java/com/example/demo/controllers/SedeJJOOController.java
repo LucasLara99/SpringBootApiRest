@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sedejjoo")
@@ -58,6 +59,22 @@ public class SedeJJOOController {
         SedeJJOODto sede = sedeJJOOService.obtenerSedeJJOO(año, id_tipo_jjoo);
         if (sede != null) {
             return ResponseEntity.ok(sede);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    /**
+     * Obtiene todas las sedes de los JJOO
+     *
+     * @return Lista de sedes de los JJOO
+     */
+    @GetMapping
+    public ResponseEntity<List<SedeJJOODto>> obtenerSedesJJOO() {
+        List<SedeJJOODto> sedes = sedeJJOOService.obtenerTodasLasSedesJJOO();
+        if (!sedes.isEmpty()) {
+            return ResponseEntity.ok(sedes);
         } else {
             return ResponseEntity.notFound().build();
         }

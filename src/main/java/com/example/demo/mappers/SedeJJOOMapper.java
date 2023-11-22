@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface SedeJJOOMapper {
     @Mappings({
@@ -28,4 +30,6 @@ public interface SedeJJOOMapper {
             @Mapping(source = "idCiudad", target = "sede.idCiudad"),
     })
     SedeJJOO UpdateDtoToModel(SedeJJOODto sedeJJOODto);
+
+    List<SedeJJOODto> ListaModelToDto(List<SedeJJOO> sedes);
 }

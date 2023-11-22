@@ -20,6 +20,12 @@ public class CiudadController {
         this.ciudadService = ciudadService;
     }
 
+
+    /**
+     * Obtiene todas las ciudades
+     *
+     * @return Lista de ciudades
+     */
     @GetMapping
     public ResponseEntity<List<CiudadDto>> obtenerCiudades() {
         List<CiudadDto> ciudades = ciudadService.obtenerTodasLasCiudades();
