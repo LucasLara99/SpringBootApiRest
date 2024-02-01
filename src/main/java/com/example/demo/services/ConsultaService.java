@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Consulta;
+import com.example.demo.exceptions.ConsultaException;
 import com.example.demo.repositories.ConsultaRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,10 @@ public class ConsultaService {
     }
 
     public List<Consulta> realizarConsulta() {
-        return consultaRepository.realizarConsulta();
+        try {
+            return consultaRepository.realizarConsulta();
+        } catch (Exception e) {
+            throw new ConsultaException("Ha ocurrido un error durante la consulta", e);
+        }
     }
 }
