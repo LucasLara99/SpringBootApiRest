@@ -1,4 +1,4 @@
-# Proyecto Qindel
+# Proyecto Sedes JJOO
 
 ## Tabla de Contenidos  
 
